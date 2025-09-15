@@ -232,7 +232,7 @@ search_notes(){
 		
 		local LAST_QUERY="$(echo "$SELECTED" | sed -n '1p')"
 		IFS=":" read -r CONTENT LINE NOTE <<< $(echo "$SELECTED" | sed -n '2p')
-		${EDITOR} +$LINE "./$NOTE"
+		${EDITOR} +$LINE "$FUZPAD_DIR/$NOTE"
 	done
 	LAST_QUERY=""
 }
