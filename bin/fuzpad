@@ -1,7 +1,19 @@
 #!/bin/bash
 
 SHELL=/bin/bash # Set the SHELL environment variable, fixes POSIX-incompatible shells
-FUZPAD_DIR="${FUZPAD_DIR:-"$HOME/Documents/.notes"}"
+
+# Set where notes are stored
+# By default, will store at $FUZPAD_DIR if the variable is already set
+# else will try to store under the $XDG_DATA_HOME directory if it is set,
+# else will default in $HOME/.local/share
+if [[ -z "${FUZPAD_DIR}" ]]; then
+	if [[ -n "${XDG_DATA_HOME}" ]]; then
+		export FUZPAD_DIR="${XDG_DATA_HOME}/fuzpad/notes"
+	else
+		export FUZPAD_DIR="$HOME/.local/share/fuzpad/notes"
+	fi
+fi
+
 AUTO_GIT="${FUZPAD_AUTO_GIT:-"1"}"
 TEXT_FORMAT="${FUZPAD_TEXT_FORMAT:-"txt"}"
 EDITOR="${EDITOR:-"nano"}"

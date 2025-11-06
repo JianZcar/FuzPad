@@ -119,7 +119,10 @@ chmod +x bin/fuzpad
 
 - **Default Directory**: Change the default directory for notes by modifying the `FUZPAD_DIR` variable in the script or by setting it in your `~/.bashrc` file:
   ```sh
-  export FUZPAD_DIR="$HOME/Documents/.notes"
+  # By default, store under $XDG_DATA_HOME if it is set
+  export FUZPAD_DIR="$XDG_DATA_HOME/fuzpad/notes"
+  # else the second default is:
+  export FUZPAD_DIR="$HOME/.local/share/fuzpad/notes"
   ```
 
 - **Text Editor**: Change the text editor by modifying the `EDITOR` variable in the script or by setting it in your `~/.bashrc` file:
